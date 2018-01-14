@@ -1,0 +1,312 @@
+
+        <style>
+        
+            .sign_in_form{
+                color: black; font-size: 12px;
+            }
+            .tag_style{
+                color: #7f7f7f; font-weight: bold; font-size: 13px;
+                
+            }
+            
+            .tag_style:hover { 
+                color: black;
+            }
+            .button_style{
+                cursor: pointer;  color: black; text-align:center; font-weight: bold; border: 1px solid #d8d8d8; background-color: #fff; padding: 15px 0; 
+                
+                
+            }
+            
+            @media (min-width: 1200px) { 
+                .streaming_display{height:360px;}
+                .copyright{height:360px; position:relative;}
+                .mobile_copy{
+                    position:absolute; bottom:0px;
+                }
+                .navbar-brand{padding-top:18px;} /* pc 로고 */
+          
+            } /*  only pc  */
+
+            
+            @media (max-width: 768px) { 
+                .streaming_display{height:185px;}
+                .all_content{
+                    padding-right:0px; padding-left:0px;  /* 모바일에서 양쪽 옆 더 넓게 컨텐츠 보이게 하기 */
+                }
+                .mobile_copy{
+                    text-align: center;   /* 저작권 관련 공지사항_가운데 정렬*/
+                    padding-top: 16px;   /* 저작권 관련 공지사항_위에 간격 주기 */
+                }
+                .content_title{
+                    padding-top: 20px; /* 제목_영상_간격 주기 */
+                }
+                .navbar-brand{padding-top:7px;} /* 모바일 로고 */
+                
+            }  
+            
+            
+        </style>
+
+
+
+        <div class="culmn">
+            <!--Home page style-->
+            <nav class="navbar navbar-default bootsnav navbar-fixed white no-background">
+                <div class="container">  
+                    <!-- Start Header Navigation -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <a class="navbar-brand" href="/">
+                            <img src="/assets/images/logo_white.png" class="logo logo-display" alt="로고_흰색">
+                            <img src="/assets/images/logo_color2.png" class="logo logo-scrolled" alt="로고_색상">
+                        </a>
+
+                    </div>
+                    <!-- End Header Navigation -->
+
+                    <!-- navbar menu -->
+                    <div class="collapse navbar-collapse" id="navbar-menu">
+                        <ul class="nav navbar-nav navbar-right" >
+                            <li><a href="/home/service" >소개</a></li>                    
+                            <li><a href="/home/tv_show">예능</a></li>
+                            <li><a href="/home/web_drama">웹컨텐츠</a></li>
+                            <li><a href="/home/person_cloud">클라우드</a></li>
+                            <% if user_signed_in? %>
+                              <li><a href="/users/sign_out">로그아웃</a></li>
+                            <% else %>
+                            
+                            <% end %>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>   
+            </nav>
+            
+            <!--Home Sections-->
+            <section id="home" class="home" >
+                <div class="container">
+                    <div class="row">
+                        <div class="main_home">
+                            <div class="col-md-6">
+                              <div class="home_text font_google" style = "color: white;">
+                                <span  style = "font-size: 50px;">예능 알짜배기 보고싶을 때</span><br>
+                                <div style = "font-size: 20px;">국내 최초, 예능 링크 공유 플랫폼</div>
+                                <br>
+                                <div><i class="fa fa-check-circle" aria-hidden="true"></i> 무작정 웃고 싶을 때</div>
+                                <div style = "margin-top: 8px;"><i class="fa fa-check-circle" aria-hidden="true"></i> 재미있는 예능만 보고 싶을 때 </div>
+                                <div style = "margin-top: 8px;"><i class="fa fa-check-circle" aria-hidden="true"></i> 지하철, 버스, 독서실에서 심심할 때</div>
+                                <div style = "margin-top: 8px;"><i class="fa fa-check-circle" aria-hidden="true"></i> 저작권 걱정 없이 고화질로 보고 싶을 때</div>
+                                
+                              </div>
+                              
+                              <div class="home_btns m-top-40">
+                                <a href="/users/sign_up" class="btn btn-danger m-top-20">회원가입</a>
+                                <a href="/home/tv_show" class="btn btn-primary m-top-20">영상보기</a>
+                              </div>
+                             </div>
+                             <div class="col-md-6">
+                                <div class="phone_one phone_attr1 text-center sm-m-top-50">
+                                    <img src="/assets/images/main_image.png" height="605" width="290" alt="소개 이미지" />
+                                </div>
+                             </div>
+
+
+                    </div><!--End off row-->
+                </div><!--End off container -->
+            </section> <!--End off Home Sections-->
+
+
+            <br><br>
+            <!--Featured Section-->
+            <section id="features" class="features">
+                <div class="container">
+                          
+                           <div class="head_title text-center" style = "padding-bottom:40px;">
+                              <h2>Best 10</h2>
+                              <h5 class = "font_google"><%= Time.now.strftime("%m") %>월 <%= Time.now.strftime("%U") %>주차, 인기 예능 컨텐츠</h5>
+                            </div>
+                            <!-- 컨텐츠 start -->
+                            <% @all.each do |x| %>
+                                <div class = "row pop">
+                                <!-- header start -->
+                                  <div class = "col-md-12 all_content ">
+                                    <div class= "col-md-12" style = "padding:16px;">
+                                      <a href = "<%= Platform.where(:id => x.platform_id).take.channel_address %>"  target = "_blank"><img src="<%= Platform.where(:id => x.platform_id).take.image_src %>" style = "float:left; margin-top:5px;" height="35" width="35" class="img-circle" alt="" /></a>
+                                      <div class = "font_google" style = "color:#262626; padding-left:45px; padding-top:5px; font-size:15px;">
+                                          <a  href = "<%= Platform.where(:id => x.platform_id).take.channel_address %>"  style = "color: black;" target = "_blank"><div><%= Platform.where(:id => x.platform_id).take.channel_name %></div></a>
+                                          <% if  Platform.where(:id => x.platform_id).take.platform == "Naver Tv" %>
+                                              <div style ="color: #00C73C; font-size:10px;">Naver Tv</div>
+                                          <% elsif Platform.where(:id => x.platform_id).take.platform == "Youtube" %>
+                                              <div style ="color: #FF0000; font-size:10px;">Youtube</div>
+                                          <% elsif Platform.where(:id => x.platform_id).take.platform == "Kakao Tv" %>
+                                              <div style ="color: #FAE100; font-size:10px;">Kakao Tv</div>
+                                          <% else %>
+                                              <div style ="color: #4267B2; font-size:10px;">Facebook</div>
+                                          <% end %>
+                                      </div>
+                                    </div>
+
+                                <!-- header end -->
+                                <!-- body start -->
+                     
+                                    <div class = "col-md-7 streaming_display">
+                                        <iframe width="100%" height="100%;" src="//<%= x.source_address %>" frameborder="0" allowfullscreen></iframe>    
+                                    </div>
+                                    <div class = "col-md-5 copyright">
+                                      <div class = "font_google content_title" style = "font-size: 25px; color: black;">
+                                        <%= x.tv_title%>
+                                      </div>
+                                       <div  class = "font_body" style = "color:black; font-size:13px; color: #90949c;">
+                                         Shared at <%= x.created_at.strftime("%Y-%m-%d %p %I:%M") %>
+                                       </div>  
+                                       <div class = "row" style = "color: black; font-size: 20px; margin-top: 5px;">
+                                        <div class = "col-md-12" >
+                                           <div class = "just_alarm" id = "<%=x.id %>">
+                                             <i class=" fa fa-bookmark-o"  style = "cursor: pointer;" aria-hidden="true"></i>  <span id = "just_alarm_<%=x.id %>"style = "display:none; color: #7f7f7f; font-size:12px; ">*로그인이 필요해요. &nbsp;|&nbsp; <a href="/users/sign_up" style = "color: black; font-size:12px; text-decoration: underline;">10초 가입</a></span>
+                                           </div>
+                                        </div>
+                                       </div>
+                                       <div style = "padding-top:15px;">
+                                          <a class ="tag_style" href ="/home/search?tag=<%= x.tag_01 %>">#<%= x.tag_01 %></a>&nbsp;&nbsp; <a class ="tag_style"  href ="/home/search?tag=<%= x.tag_02 %>">#<%= x.tag_02 %></a>&nbsp;&nbsp; <a class ="tag_style"  href ="/home/search?tag=<%= x.tag_03 %>">#<%= x.tag_03 %></a>&nbsp;&nbsp; <a class ="tag_style"  href ="/home/search?tag=<%= x.tag_04 %>">#<%= x.tag_04 %></a>
+                                       </div>
+                                       <hr>
+                                      <p style = "color: black; height: 100px; font-size: 13px; color:#555;">
+                                        <%= x.tv_explanation.html_safe %>
+                                      </p>
+                
+                                      <div class = "row">
+                                          <div class = "col-md-4 col-xs-6" style = " padding-right:0px;">
+                                                <div class = "button_style like" id = "<%= x.id %>" >
+                                                  <i id = "like_button_<%= x.id %>" class="fa fa-heart-o" aria-hidden="true"></i> 재밌어요
+                                                </div>
+                                          </div>
+                                          <div class = "col-md-4 col-xs-6 comment_design" style = "padding-left: 0px;  "> 
+                                              <div id = "<%= x.id %>" class =  "button_style comment_button" style = "background-color: #628AFC; color: white; ">
+                                                <i class="fa fa-comment-o" aria-hidden="true"></i> 댓글 보기
+                                              </div>
+                                           </div> 
+                                          <div class = "col-md-4"></div>
+                                      </div>
+                                      
+                
+                
+                                      <div class ="mobile_copy" style = "font-size: 12px;">
+                                          © 해당 영상의 저작권은 <span style = "font-weight:bold; color: black;">'<%= Platform.where(:id => x.platform_id).take.channel_name %>'</span>에 있음을 알려드립니다.
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                                
+                                <div class = "col-md-12" style = "padding-top:16px;">
+                                    
+                                </div>
+                                
+                                <div id = "comment_display_<%= x.id %>" class = "col-md-12" style = " display: none; padding-left: 30px; padding-right: 30px;">
+                                    <div style = "font-size: 17px; font-weight: bold;">
+                                      <span style = " color: black; ">댓글</span> <span style = "color: #628AFC;"> <%= x.comments.all.count %></span>
+                                    </div>
+                                    
+                                    <hr style = "margin-top:10px; margin-bottom:10px;">
+                                    <div>
+                                         <textarea class="form-control" rows="5" placeholder = "로그인이 필요한 서비스입니다"></textarea>
+                                         <div style = "text-align: right; margin-top:10px;"> 
+                                           <a href="/users/sign_up" class="btn btn-primary btn-sm" role="button">로그인</a>
+                                         </div>
+                                    </div>
+                                    <div style = "font-size: 13px; color: black; font-weight: bold; margin-top: 20px;">
+                                        <i class="fa fa-check" aria-hidden="true"></i> 모든 댓글
+                                    </div>
+                                    <hr>
+                                    <% x.comments.reverse_each do |a| %>
+                                    <div>
+                                        <div style = "line-height: 25px; font-size: 13px; color: black; font-weight: 700;"><%= Nickname.find(a.user_id).full_nickname %></div>
+                                        <div style = "line-height: 18px; font-size: 13px; color: black;"><%= a.comment_content %></div>
+                                        <div style = "font-size: 12px; color: #999;"><%= time_ago_in_words(a.created_at) %></div>
+                                    </div>
+                                    <hr>
+                                    <% end %>
+                                    <br><br>
+                                   
+                                </div>
+                                
+                                </div>
+                                <!-- body end -->
+                            <br>
+                            <% end %>
+                            <!-- 컨텐츠 end -->
+           
+                            
+                </div><!-- End off container -->
+            </section><!-- End off Featured Section-->
+
+
+
+           
+            <br><br><br>
+            
+            
+            <!--App Download Section-->
+            <section id="download" class="download">
+                <div class="download_overlay"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="main_download " >
+                            <div class="col-md-6">
+                                <div class="download_item roomy-100" style = "padding-bottom:0px;">
+                                    <h2 class="text-white font_google">재밌는 예능 더 볼래요?</h2>
+                                    <h5 class="text-white m-top-20 font_google">
+                                        <div style = "margin-bottom:10px;">#10초 가입</div>
+                                        <div style = "margin-bottom:10px;">#골라보기 가능</div>
+                                        <div style = "margin-bottom:10px;">#웃어도 웃어도 웃고 싶다</div>
+                                        <div style = "margin-bottom:10px;">#아직 못 본 예능 너무나 많은 것</div>
+                                    </h5>
+                                    <!-- <img src = "/assets/images/footer-logo2.png" /> -->
+                                    <div class="download_app m-top-10" style = "margin-bottom:30px;">
+                                    <a href="/home/tv_show" class="btn btn-danger m-top-20">영상더보기</a>
+                                    <a href="/home/service" class="btn btn-primary m-top-20">서비스소개</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="download_item m-top-70">
+                                    <img class="app_right" src="/assets/images/appdownload1.png" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            
+            
+            <!-- scroll up-->
+            <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+            </div><!-- End off scroll up -->
+            
+            
+             <%= render :partial => "home/footer" %> 
+        </div>
+
+        
+        
+        
+        <script>
+         $( ".comment_button" ).click(function () {
+          var comment_id = $(this).attr('id');  
+          $( "#comment_display_" + comment_id ).toggle();
+        });
+        </script>
+
+        
+         <script>
+
+            $(".just_alarm").click(
+            function(){
+                var number2 = $(this).attr('id');
+                $("#just_alarm_" + number2).css("display","inline");
+            }
+          );
+        </script>

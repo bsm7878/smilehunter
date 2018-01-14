@@ -1,0 +1,117 @@
+<!-- <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea' });</script> -->
+
+
+
+<div class = "container">
+  <div class = "row">
+    <div class "col-md-2"></div>
+    <div class "col-md-8">
+      <br><br>
+               <div class="alert alert-success" role="alert">컨텐츠 추가</div>
+              <form action = "/home/admin_save" method = "get">
+               <div class="form-group">
+                <label for="exampleFormControlSelect1">플랫폼</label>
+                <select class="form-control" name = "platform" id="exampleFormControlSelect1">
+                  <% @all_platform.each do |p| %>
+                    <option value = "<%= p.id %>"><%= p.platform %> | <%= p.channel_name %></option>
+                  <% end %>
+                </select>
+              </div>  
+              
+              <div class="form-group">
+                <label for="exampleFormControlSelect10">타입</label>
+                <select class="form-control" name = "tv_type" id="exampleFormControlSelect10">
+                  <option value = "0">예능</option>
+                  <option value = "1">웹컨텐츠</option>
+                  <option value = "2">웹컨텐츠_sub</option>
+                </select>
+              </div> 
+              
+              
+              
+              <div class="form-group">
+                <label for="example">제목</label>
+                <input type="text" class="form-control" name = "tv_title" id="example" aria-describedby="emailHelp" placeholder="제목">
+              </div>
+              
+              <div class="form-group">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea4">컨텐츠 설명</label>
+                  <textarea class="form-control" name = "tv_explanation" id="exampleFormControlTextarea4" rows="3"></textarea>
+                </div>
+              </div>
+              <h6>
+                a href = "/home/search?tag=태그2">전체 이어보기
+              </h6>
+              <div class="form-group">
+                <label for="exampleInputEmail5">태그_01</label>
+                <input type="text" class="form-control" name = "tag_01" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="tag_01">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputEmail6">태그_02</label>
+                <input type="text" class="form-control" name = "tag_02" id="exampleInputEmail6" aria-describedby="emailHelp" placeholder="tag_02">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputEmail7">태그_03</label>
+                <input type="text" class="form-control" name = "tag_03" id="exampleInputEmail7" aria-describedby="emailHelp" placeholder="tag_03">
+              </div>
+              
+              <div class="form-group">
+                <label for="exampleInputEmail8">태그_04</label>
+                <input type="text" class="form-control" name = "tag_04" id="exampleInputEmail8" aria-describedby="emailHelp" placeholder="tag_04">
+              </div>
+              
+
+              <div class="form-group">
+                <label for="exampleInputEmail5">소스 주소</label>
+                <input type="text" class="form-control" name = "source_address" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="ex_www.youtube.com/embed/dYrieYa_vTI?rel=0">
+              </div>
+              <input type = "submit" class="btn btn-primary" value = "등록">
+            </form>  
+            
+          <hr> 
+          
+          <div class="alert alert-success" role="alert">닉네임 추가</div>
+          <a href = "/home/nickname_save">엑셀 닉네임 추가!</a>
+          
+        <hr>
+          <div class="alert alert-success" role="alert">주간 인기 순위 업데이트</div>
+          <a href = "/home/like_rank">업데이트!</a>
+          
+        <hr>
+        <div class="alert alert-success" role="alert">플랫폼 및 채널 추가!</div>
+        <form action = "/home/platform_save" method = "GET">
+          <div class="form-group">
+            <label for="exampleInputEmail1">플랫폼</label>
+            <select class="form-control" id="exampleInputEmail1" name = "platform">
+              <option valeue ="Naver Tv">Naver Tv</option>
+              <option valeue ="Kakao Tv">Kakao Tv</option>
+              <option valeue ="Youtube">Youtube</option>
+              <option valeue ="Facebook">Facebook</option>
+            </select>
+            </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">채널 이름</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name = "channel_name"placeholder="ex_무한도전">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword2">이미지 주소</label>
+            <input type="text" class="form-control" id="exampleInputPassword2" name = "image_src" >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword3">채널 주소</label>
+            <input type="text" class="form-control" id="exampleInputPassword3" name = "channel_address" >
+          </div>
+          
+          <input type = "submit" class="btn btn-primary" value = "등록">
+        </form>
+          
+    <div class "col-md-2"></div>
+  </div>
+</div>
+    
+
+ 

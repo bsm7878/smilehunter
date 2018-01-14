@@ -1,0 +1,5 @@
+class Mypage < ActiveRecord::Base
+    
+    belongs_to :user
+    
+end

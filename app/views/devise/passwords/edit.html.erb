@@ -1,0 +1,111 @@
+
+
+
+       
+        <!--Google Font link-->
+        <link href="//fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+
+
+        <link rel="stylesheet" href="/assets/css/swiper.min.css">
+        <link rel="stylesheet" href="/assets/css/animate.css">
+        <link rel="stylesheet" href="/assets/css/iconfont.css">
+        <link rel="stylesheet" href="/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="/assets/css/bootsnav.css">
+         <style>
+        @font-face {
+          font-family: 'LotteMartHappy';
+          font-style: normal;
+          font-weight: 700;
+          src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartHappy/LotteMartHappyBold.woff') format('woff');
+          }
+      
+        .font_google{
+          font-family: 'LotteMartHappy', sans-serif;
+        }
+        
+        nav{
+          font-family: 'LotteMartHappy', sans-serif;
+        }
+        
+        .label_style{
+          color: black; font-size: 12px;
+        }
+        </style>
+
+        <!--For Plugins external css-->
+        <!--<link rel="stylesheet" href="/assets/css/plugins.css" />-->
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="/assets/css/style.css">
+
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="/assets/css/responsive.css" />
+
+        <script src="/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        
+
+        
+          
+
+        
+        <div class = "container-fluid" style = "background-color: white;">
+          <br>
+          <div style = "text-align: center;">
+          <a href="/">
+            <img src="/assets/images/logo_color2.png" class="logo logo-scrolled" alt="로고_색상">
+          </a>
+          </div>
+          <hr style = "margin-top: 10px;">
+          <div class = "row">
+            <div class = "col-md-12">
+              <div style = "font-size: 32px; color: black; text-align: center;">
+                재밌는 예능 보고<br>
+                신나게 웃어보자
+              </div>
+            </div>  
+          </div>
+          <br>
+          
+          
+          <div class = "row">
+            <div class = "col-md-4"></div>
+            <div class = "col-md-4">
+           
+              <div class = "sign_up_card" style = "padding: 40px 40px; background-color: #F7F7F7; border-radius:3px; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);">
+                <div style = "color: black; text-align: center; font-weight: bold;">
+                  <i class="fa fa-unlock" aria-hidden="true"></i> 새로운 암호 설정하기
+                </div>
+                <hr>
+
+                 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                  <%= devise_error_messages! %>
+                  <%= f.hidden_field :reset_password_token %>
+                  <div class="field ">
+                    <%= f.label :password, "새로운 암호", :class => "label_style" %><br />
+                    <%= f.password_field :password, class: 'form-control', autofocus: true, autocomplete: "off" %>
+                  </div>
+                  <div style = "color: black; font-size: 12px; margin-top:5px;">*7자 이상</div><br>
+                  <div class="field" style = "margin-top:10px;">
+                    <%= f.label :password_confirmation, "새로운 암호 확인", :class => "label_style" %><br />
+                    <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "off" %>
+                  </div>
+                  <br>
+                  <div class="actions" style = "text-align:center; margin-top:10px;">
+                   <input type="submit" class="btn btn-primary  btn-block" name="commit"  value="암호 바꾸기" />
+                  </div>
+                <% end %>  
+              </div>
+                                                       
+            </div>
+            <div class = "col-md-4"></div>
+          </div>
+          <br><br><br><br><br>
+        </div>
+        <%= render :partial => "home/footer" %> 
+
+
+
+
+
+

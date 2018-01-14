@@ -1,0 +1,367 @@
+
+        <style>
+        
+            .sign_in_form{
+                color: black; font-size: 12px;
+            }
+            .tag_style{
+                color: #7f7f7f; font-weight: bold; font-size: 13px;
+                
+            }
+            
+            .tag_style:hover { 
+                color: black;
+            }
+            .button_style{
+                cursor: pointer;  color: black; text-align:center; font-weight: bold; border: 1px solid #d8d8d8; background-color: #fff; padding: 15px 0; 
+                
+                
+            }
+            
+            .reply_nickname{
+                line-height: 25px; font-size: 13px; color: black; font-weight: 700;
+            }
+            .reply_coment{
+                line-height: 18px; font-size: 13px; color: black; font-weight: normal;
+            }
+            .reply_time{
+                font-size: 12px; color: #999; font-weight: normal;
+            }
+            
+            .fa-heart{
+                color: red;
+            }
+            
+            @media (min-width: 1200px) { 
+                .streaming_display{height:360px;}
+                .copyright{height:360px; position:relative;}
+                .mobile_copy{
+                    position:absolute; bottom:0px;
+                }
+          
+            } /*  only pc  */
+
+            
+            @media (max-width: 768px) { 
+                .streaming_display{height:185px;}
+                .all_content{
+                    padding-right:0px; padding-left:0px;  /* 모바일에서 양쪽 옆 더 넓게 컨텐츠 보이게 하기 */
+                }
+                .mobile_copy{
+                    text-align: center;   /* 저작권 관련 공지사항_가운데 정렬*/
+                    padding-top: 16px;   /* 저작권 관련 공지사항_위에 간격 주기 */
+                }
+                .content_title{
+                    padding-top: 20px; /* 제목_영상_간격 주기 */
+                }
+                .pagination li:not(.active):not(.prev):not(.next):not(.disabled):not(:nth-last-child(2)){
+                         display: none;
+
+                }
+                
+            }  
+            
+            
+        </style>
+
+
+
+        <div class="culmn">
+            <!--Home page style-->
+
+
+            <!-- tv_nav 시작 -->
+            <%= render :partial => "home/webnav" %> 
+            <!-- tv_nav 끝 -->
+
+
+
+            <div class = "container-fluid pop" style = "margin-top: 100px; margin-bottom:20px;">
+                <div class = "row">
+                    <div class = "col-md-12">
+                        <div style = " padding-top:30px; text-align: center;">
+                            <div style = "font-size: 20px;">
+                              <span style = " color: #41444c; font-weight: bold;">'전체 웹컨텐츠 무작위'</span> <span style = "color: black;">검색결과</span>    
+                            </div>
+                            
+                            <hr>
+                            
+                            <div style = "margin-bottom:18px;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href= "/home/web_drama"><span style = "display:inline-block; height: 10px; width: 10px; margin: 6px 7px 0 0; border-radius: 8px; background-color: #ced4d9;"></span><span style = "color: #797979;  font-size:14px; margin-right:35px;">인기</span></a>
+                                <a href= "/home/web_random"><span style = "display:inline-block; height: 10px; width: 10px; margin: 6px 7px 0 0; border-radius: 8px; background-color: #2282F2;"></span><span style = "font-weight: bold; font-size:14px; color:black; margin-right:35px;">무작위</span></a>
+                                <a href= "/home/web_new"><span style = "display:inline-block; height: 10px; width: 10px; margin: 6px 7px 0 0; border-radius: 8px; background-color: #ced4d9;"></span><span style = "color: #797979;  font-size:14px; margin-right:35px;">최신</span></a>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>     
+            </div> 
+            
+            
+            <!--Featured Section-->
+            <section id="features" class="features">
+                <div class="container">
+ 
+                            <!-- 컨텐츠 start -->
+                            <% @all.shuffle.each do |x| %>
+                                <div class = "row pop">
+                                <!-- header start -->
+                                  <div class = "col-md-12 all_content ">
+                                    <div class= "col-md-12" style = "padding:16px;">
+                                      <img src="<%= Platform.where(:id => x.platform_id).take.image_src %>" style = "float:left; margin-top:5px;" height="35" width="35" class="img-circle" alt="" />
+                                      <div class = "font_google" style = "color:#262626; padding-left:45px; padding-top:5px; font-size:15px;">
+                                          <div><%= Platform.where(:id => x.platform_id).take.channel_name %></div>
+                                          <% if  Platform.where(:id => x.platform_id).take.platform == "Naver Tv" %>
+                                              <div style ="color: #00C73C; font-size:10px;">Naver Tv</div>
+                                          <% elsif Platform.where(:id => x.platform_id).take.platform == "Youtube" %>
+                                              <div style ="color: #FF0000; font-size:10px;">Youtube</div>
+                                          <% elsif Platform.where(:id => x.platform_id).take.platform == "Kakao Tv" %>
+                                              <div style ="color: #FAE100; font-size:10px;">Kakao Tv</div>
+                                          <% else %>
+                                              <div style ="color: #4267B2; font-size:10px;">Facebook</div>
+                                          <% end %>
+                                      </div>
+                                    </div>
+
+                                <!-- header end -->
+                                <!-- body start -->
+                     
+                                    <div class = "col-md-7 streaming_display">
+                                        <iframe width="100%" height="100%;" src="//<%= x.source_address %>" frameborder="0" allowfullscreen></iframe>    
+                                    </div>
+                                    <div class = "col-md-5 copyright">
+                                      <div class = "font_google content_title" style = "font-size: 25px; color: black;">
+                                        <%= x.tv_title%>
+                                      </div>
+                                       <div  class = "font_body" style = "color:black; font-size:13px; color: #90949c;">
+                                         Shared at <%= x.created_at.strftime("%Y-%m-%d %p %I:%M") %>
+                                       </div>  
+                                       <div class = "row" style = "color: black; font-size: 20px; margin-top: 5px;">
+                                        <div class = "col-md-12" >
+                                           <% if Mypage.where(:user_id => current_user.id).where(:content_id => x.id).exists? %>    
+                                           <div class = "mypage" id = "<%= x.id %>">
+                                             <i id = "mypage_button_<%=x.id %>" class = "fa fa-bookmark" aria-hidden="true" style = "cursor: pointer;"></i> 
+                                           </div>
+                                           <% else %>
+                                           <div class ="mypage" id = "<%= x.id %>">
+                                             <i id = "mypage_button_<%=x.id %>" class ="fa fa-bookmark-o" aria-hidden="true" style = "cursor: pointer;"></i>
+                                           </div>
+                                           <% end %>
+                                        </div>
+                                       </div>
+                                       <div style = "padding-top:15px;">
+                                          <a class ="tag_style" href ="/home/search?tag=<%= x.tag_01 %>">#<%= x.tag_01 %></a>&nbsp;&nbsp; <a class ="tag_style"  href ="/home/search?tag=<%= x.tag_02 %>">#<%= x.tag_02 %></a>&nbsp;&nbsp; <a class ="tag_style"  href ="/home/search?tag=<%= x.tag_03 %>">#<%= x.tag_03 %></a>&nbsp;&nbsp; <a class ="tag_style"  href ="/home/search?tag=<%= x.tag_04 %>">#<%= x.tag_04 %></a>
+                                       </div>
+                                       <hr>
+                                      <p style = "color: black; height: 100px; font-size: 13px; color:#555;">
+                                        <%= x.tv_explanation.html_safe %>
+                                      </p>
+                
+                                      <div class = "row">
+                                          <div class = "col-md-4 col-xs-6" style = " padding-right:0px;">
+                                              <% if Like.where(:user_id => current_user.id).where(:content_id => x.id).exists? %>
+                                                <div class = "button_style like" id = "<%= x.id %>" >
+                                                  <i id = "like_button_<%= x.id %>"  class = "fa fa-heart" aria-hidden="true"></i> 재밌어요
+                                                </div>  
+                                              <% else %>
+                                                <div class = "button_style like" id = "<%= x.id %>" >
+                                                  <i id = "like_button_<%= x.id %>" class = "fa fa-heart-o" aria-hidden="true"></i> 재밌어요
+                                                </div>
+                                              <% end %>
+                                          </div>
+                                          <div class = "col-md-4 col-xs-6 comment_design" style = "padding-left: 0px;  "> 
+                                              <div id = "<%= x.id %>" class =  "button_style comment_button" style = "background-color: #628AFC; color: white; ">
+                                                <i class="fa fa-comment-o" aria-hidden="true"></i> 댓글 보기
+                                              </div>
+                                           </div> 
+                                          <div class = "col-md-4"></div>
+                                      </div>
+                                      
+                
+                
+                                      <div class ="mobile_copy" style = "font-size: 12px;">
+                                          © 해당 영상의 저작권은 <span style = "font-weight:bold; color: black;">'<%= Platform.where(:id => x.platform_id).take.channel_name %>'</span>에 있음을 알려드립니다.
+                                      </div>
+                                      
+                                    </div>
+                                </div>
+                                
+                                <div class = "col-md-12" style = "padding-top:16px;">
+                                    
+                                </div>
+                                
+                                <div id = "comment_display_<%= x.id %>" class = "col-md-12" style = " display: none; padding-left: 30px; padding-right: 30px;">
+                                    <div style = "font-size: 17px; font-weight: bold;">
+                                      
+                                      <span style = " color: black; ">댓글</span> <span style = "color: #628AFC;"> <%= x.comments.all.count %></span>
+                                    </div>
+                                    
+                                    <hr style = "margin-top:10px; margin-bottom:10px;">
+                                    <div>
+                                         <textarea class="form-control " id= "textarea_<%= x.id %>" rows="5"></textarea>
+                                         <div style = "text-align: right; margin-top:10px;"> 
+                                           <a class="btn btn-primary btn-sm comment_input" id = "<%= x.id %>">댓글 달기</a>
+                                         </div>
+                                    </div>
+                                    <div style = "font-size: 13px; color: black; font-weight: bold; margin-top: 20px;">
+                                        <i class="fa fa-check" aria-hidden="true"></i> 모든 댓글
+                                    </div>
+                                    <hr>
+                                    
+                                    <!-- @post = @all_comment.where(:content_id => x.id) -->
+                                    <div class = "plus_<%= x.id %>">
+                                        <div></div>
+                                        <div class = "reply_nickname" id = "nickname_<%= x.id %>" ></div>
+                                    </div>
+                                     
+                                    <% x.comments.reverse_each do |a| %>
+                                      <div>
+                                        <div class = "reply_nickname" ><%= Nickname.find(a.user_id).full_nickname %></div>
+                                        <div class = "reply_coment"><%= a.comment_content %></div>
+                                        <div class = "reply_time"><%= time_ago_in_words(a.created_at) %></div>
+                                      </div>
+                                     <hr>
+                                    <% end %>
+                                    <br><br>
+              
+                                   
+                                </div>
+                                </div>
+                                <!-- body end -->
+                            <br>
+                            <% end %>
+                            <!-- 컨텐츠 end -->
+                            
+                            <div style = "text-align:center;">
+                              <%= will_paginate @all, renderer: BootstrapPagination::Rails %>
+                            </div>
+
+                </div><!-- End off container -->
+                
+            </section><!-- End off Featured Section-->
+
+
+
+           
+            <br><br><br>
+            
+            
+        
+            
+            
+            <!-- scroll up-->
+            <div class="scrollup">
+                <a href="#"><i class="fa fa-chevron-up"></i></a>
+            </div><!-- End off scroll up -->
+            
+             <%= render :partial => "home/footer" %> 
+            
+        </div>
+
+        
+        
+        <!-- 댓글 보기 -->
+        <script>
+         $( ".comment_button" ).click(function () {
+          var comment_id = $(this).attr('id');  
+          $( "#comment_display_" + comment_id ).toggle();
+        });
+        </script>
+
+
+        <!-- 댓글 추가 ajax -->
+        <script>
+            $(".comment_input").click(
+            function(){
+                var number =  $(this).attr('id');
+                var txt = $("#textarea_" + number).val();
+                $.ajax({
+                    
+
+                    type : 'GET',
+                    url: "/home/comment_content_save",
+                    data: {
+                        content2: $(this).attr('id'), content3: $("#textarea_" + number).val()
+                        
+                    },
+                    success: function(data){
+                     $("#nickname_" + number).prepend("<div>" + "<%= Nickname.find(current_user.id).full_nickname %>" + "</div>" + '<div class="reply_coment">' + txt + '</div>' + '<div class="reply_time">1 minutes</div>'+ "<hr>");
+                     /*$("#reply_" + number).append("<div>" + txt + "</div>");
+                     $("#time_" + number).append("<div>" + "1 minutes" + "</div>" + "<hr>"); */
+                     $("#textarea_" + number).val('');
+
+                    }
+                    
+                });
+            }
+          );
+        </script>
+
+
+        <!-- 좋아요 ajax -->
+        <script>
+            $(".like").click(
+            function(){
+                var number2 = $(this).attr('id');
+                $.ajax({
+                    
+
+                    type : 'GET',
+                    url: "/home/like_save",
+                    data: {
+                        content: $(this).attr('id')
+                    },
+                    success: function(data){
+                            var like_button = $("#like_button_" + number2).attr('class');
+                            if (like_button == "fa fa-heart-o") {
+                                $("#like_button_" + number2).attr('class','fa fa-heart');
+                            } else if (like_button == "fa fa-heart")  {
+                                $("#like_button_" + number2).attr('class','fa fa-heart-o');
+                            } else {
+                            }
+                            
+           
+           
+                     
+                    }
+                    
+                });
+            }
+          );
+        </script>
+        
+        <!-- 북마크 ajax -->
+        <script>
+            $(".mypage").click(
+            function(){
+                var number1 = $(this).attr('id');
+                $.ajax({
+                    
+                    type : 'GET',
+                    url: "/home/mypage_save",
+                    data: {
+                        content1: $(this).attr('id')
+                    },
+                    success: function(data){
+                         var cloud_button = $("#mypage_button_" + number1).attr('class');
+                         
+                            if (cloud_button == "fa fa-bookmark-o") {
+                                $("#mypage_button_" + number1).attr('class','fa fa-bookmark');
+                            } else if (cloud_button == "fa fa-bookmark")  {
+                                $("#mypage_button_" + number1).attr('class','fa fa-bookmark-o');
+                                $("#alarm_" + number1).css("display","inline");
+                            } else {
+                            }
+                  
+              
+                     
+                    }
+                    
+                });
+            }
+          );
+        </script>
+        
+        
