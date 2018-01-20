@@ -75,9 +75,9 @@
           <hr> 
           
            <div class="alert alert-success" role="alert">닉네임 추가</div>
-           <a href = "/home/nickname_save">엑셀 닉네임 추가!</a>
-          <%= Nickname.all.count %>개의 닉네임 보유 중!
-          업데이트가 되나?
+           <!-- <a href = "/home/nickname_save">엑셀 닉네임 추가!</a> -->
+          <span style = "font-weight: bold;"><%= Nickname.all.count %></span>개의 닉네임 보유 중! <br>
+          <span style = "font-weight: bold;"><%= User.all.count %></span>명 가입! <br>
         <hr>
           <div class="alert alert-success" role="alert">주간 인기 순위 업데이트</div>
           <a href = "/home/like_rank">업데이트!</a>
