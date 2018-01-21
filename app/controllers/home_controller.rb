@@ -236,5 +236,30 @@ class HomeController < ApplicationController
   end
   
   
+  def justify #컨텐츠 수정하기
+    if current_user.email == "bsm7878@naver.com"
+       @all_platform = Platform.all
+       @content = Content.where(:id => params[:id]).take 
+    else
+       redirect_to '/'
+    end
+  end
+  
+  def justify_save #컨텐츠 수정_저장
+    justify = Content.where(:id => params[:id]).take
+    justify.platform_id =params[:platform].to_i
+    justify.tv_type = params[:tv_type].to_i
+    justify.source_address = params[:source_address]
+    justify.tv_title = params[:tv_title]
+    justify.tv_explanation = params[:tv_explanation]
+    justify.tag_01 = params[:tag_01]
+    justify.tag_02 = params[:tag_02]
+    justify.tag_03 = params[:tag_03]
+    justify.tag_04 = params[:tag_04]
+    justify.like_count = params[:like_count].to_i
+    justify.save
+    redirect_to :back
+  end
+  
   
 end

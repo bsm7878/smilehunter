@@ -8,7 +8,7 @@ class CreatePlatforms < ActiveRecord::Migration
      t.string :channel_address #채널 주소
 
 
-      t.timestamps null: false
+      t.timestamps null: falser
     end
   end
 end

@@ -1,0 +1,77 @@
+             
+             
+             <div class = "row">
+                 <div class = "col-md-3"></div>
+                 <div class = "col-md-6">
+                     <div class="alert alert-success" role="alert">컨텐츠 수정하기</div>
+                      <form action = "/home/justify_save/<%= @content.id %>" method = "GET">
+                       <div class="form-group">
+                        <label for="exampleFormControlSelect1">플랫폼</label>
+                        <select class="form-control" name = "platform" id="exampleFormControlSelect1">
+                          <% @all_platform.each do |p| %>
+                            <option value = "<%= p.id %>"><%= p.platform %> | <%= p.channel_name %></option>
+                          <% end %>
+                        </select>
+                      </div>  
+                      
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect10">타입</label>
+                        <select class="form-control" name = "tv_type" id="exampleFormControlSelect10">
+                          <option value = "0">예능</option>
+                          <option value = "1">웹컨텐츠</option>
+                          <option value = "2">웹컨텐츠_sub</option>
+                        </select>
+                      </div> 
+                      
+                      
+                      
+                      <div class="form-group">
+                        <label for="example">제목</label>
+                        <input type="text" class="form-control" name = "tv_title" id="example" aria-describedby="emailHelp" value = "<%= @content.tv_title %>" placeholder="제목">
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea4">컨텐츠 설명</label>
+                          <textarea class="form-control" name = "tv_explanation" id="exampleFormControlTextarea4" rows="3"><%= @content.tv_explanation %></textarea>
+                        </div>
+                      </div>
+                      <h6>
+                        a href = "/home/search?tag=태그2">전체 이어보기
+                      </h6>
+                      <div class="form-group">
+                        <label for="exampleInputEmail5">태그_01</label>
+                        <input type="text" class="form-control" name = "tag_01" id="exampleInputEmail5" value = "<%= @content.tag_01 %>" aria-describedby="emailHelp" placeholder="tag_01">
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="exampleInputEmail6">태그_02</label>
+                        <input type="text" class="form-control" name = "tag_02" id="exampleInputEmail6" value = "<%= @content.tag_02 %>" aria-describedby="emailHelp" placeholder="tag_02">
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="exampleInputEmail7">태그_03</label>
+                        <input type="text" class="form-control" name = "tag_03" id="exampleInputEmail7" value = "<%= @content.tag_03 %>" aria-describedby="emailHelp" placeholder="tag_03">
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="exampleInputEmail8">태그_04</label>
+                        <input type="text" class="form-control" name = "tag_04" id="exampleInputEmail8" value = "<%= @content.tag_04 %>" aria-describedby="emailHelp" placeholder="tag_04">
+                      </div>
+                      
+        
+                      <div class="form-group">
+                        <label for="exampleInputEmail5">소스 주소</label>
+                        <input type="text" class="form-control" name = "source_address" id="exampleInputEmail5" value = "<%= @content.source_address %>" aria-describedby="emailHelp" placeholder="ex_www.youtube.com/embed/dYrieYa_vTI?rel=0">
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="exampleInputEmail6">좋아요 갯수</label>
+                        <input type="text" class="form-control" name = "like_count" id="exampleInputEmail6" value = "<%= @content.like_count %>" aria-describedby="emailHelp" >
+                      </div>
+                      
+                      <input type = "submit" class="btn btn-primary" value = "등록">
+                    </form>  
+                </div>
+                 <div class = "col-md-3"></div>
+                </div>

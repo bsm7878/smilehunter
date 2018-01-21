@@ -136,15 +136,44 @@
                                        </div>  
                                        <div class = "row" style = "color: black; font-size: 20px; margin-top: 5px;">
                                         <div class = "col-md-12" >
+                                        <!-- 컨텐츠 수정하기 start -->   
+                                        <% if current_user.email == "bsm7878@naver.com" %>
+                                        
+                                           <!-- 북마트 start -->
                                            <% if Mypage.where(:user_id => current_user.id).where(:content_id => x.id).exists? %>    
                                            <div class = "mypage" id = "<%= x.id %>">
-                                             <i id = "mypage_button_<%=x.id %>" class = "fa fa-bookmark" aria-hidden="true" style = "cursor: pointer;"></i> 
+                                             <i id = "mypage_button_<%=x.id %>" class = "fa fa-bookmark" aria-hidden="true" style = "cursor: pointer;"></i>&nbsp;&nbsp;&nbsp; <a href = "/home/justify/<%= x.id %>"  style = "color: black;"><i class="fa fa-wrench" aria-hidden="true"></i></a>
+                                           </div>
+                                           <% else %>
+                                           <div class ="mypage" id = "<%= x.id %>">
+                                             <i id = "mypage_button_<%=x.id %>" class ="fa fa-bookmark-o" aria-hidden="true" style = "cursor: pointer;"></i>&nbsp;&nbsp;&nbsp; <a href = "/home/justify/<%= x.id %>" style = "color: black;"><i class="fa fa-wrench" aria-hidden="true"></i></a>
+                                           </div>
+                                           <% end %>
+                                           <!-- 북마트 end -->
+                                           
+                                        <% else %>
+                                        
+                                           <!-- 북마트 start -->
+                                           <% if Mypage.where(:user_id => current_user.id).where(:content_id => x.id).exists? %>    
+                                           <div class = "mypage" id = "<%= x.id %>">
+                                             <i id = "mypage_button_<%=x.id %>" class = "fa fa-bookmark" aria-hidden="true" style = "cursor: pointer;"></i>
                                            </div>
                                            <% else %>
                                            <div class ="mypage" id = "<%= x.id %>">
                                              <i id = "mypage_button_<%=x.id %>" class ="fa fa-bookmark-o" aria-hidden="true" style = "cursor: pointer;"></i>
                                            </div>
                                            <% end %>
+                                           <!-- 북마트 end -->
+                                         
+                                        <% end %> 
+                                        <!-- 컨텐츠 수정하기 end -->   
+                                           
+                                               
+                                          
+                                              
+                                           
+                                           
+                                           
                                         </div>
                                        </div>
                                        <div style = "padding-top:15px;">
