@@ -314,8 +314,6 @@
                     },
                     success: function(data){
                      $("#nickname_" + number).prepend("<div>" + "<%= Nickname.find(current_user.id).full_nickname %>" + "</div>" + '<div class="reply_coment">' + txt + '</div>' + '<div class="reply_time">1 minutes</div>'+ "<hr>");
-                     /*$("#reply_" + number).append("<div>" + txt + "</div>");
-                     $("#time_" + number).append("<div>" + "1 minutes" + "</div>" + "<hr>"); */
                      $("#textarea_" + number).val('');
 
                     }
@@ -380,11 +378,8 @@
                                 $("#alarm_" + number1).css("display","inline");
                             } else {
                             }
-                  
-              
                      
                     }
-                    
                 });
             }
           );
