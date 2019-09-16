@@ -4,7 +4,7 @@
 
 > <a href ="http://www.smilehunter.shop/">사이트 바로가기</a>
 
-> <a href ="https://blog.naver.com/bsm7878/221190015179">브런치</a>
+> <a href ="https://blog.naver.com/bsm7878/221190015179">블로그</a>
 <hr>
 <h3>개발 프레임워크</h3>
 <hr>
