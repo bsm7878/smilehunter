@@ -1,24 +1,26 @@
+<h2>웃음사냥꾼</h2>
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+> Naver Tv, Youtube, KaKaoTv 등에 흩어진 예능영상을 Iframe으로 한곳에 모아서 볼 수 있는 플랫폼
 
+> <a href ="http://www.smilehunter.shop/">사이트 바로가기</a>
 
-Welcome to your Rails project on Cloud9 IDE!
+> <a href ="https://blog.naver.com/bsm7878/221190015179">브런치</a>
+<hr>
+<h3>개발 프레임워크</h3>
+<hr>
 
-To get started, just do the following:
+>IDE - C9
 
-1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://HOSTNAME/).
+>언어 - Ruby
 
-Happy coding!
-The Cloud9 IDE team
+>프레임워크 - Ruby On Rails
 
+>DB - sqlite
 
-## Support & Documentation
+>서버 - Nginx, Aws
 
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+>분석 - Google Analytics
+
+>버전관리 - Github
+
+>UI - Bootstrap
